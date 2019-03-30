@@ -1,0 +1,63 @@
+.button{
+    border: none;
+    background: 0 0;
+    border-radius: 2px;
+    color: #757575;
+    position: relative;
+    height: 37px;
+    margin: -10px 10px 0 0;
+    min-width: 64px;
+    padding: 0 16px;
+    display: inline-block;
+    font-family: "Consolas","Helvetica","Arial",sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    line-height: 36px;
+    vertical-align: middle;
+}
+
+.button:hover{
+    background-color: whitesmoke;
+}
+
+.none {
+    list-style-type: none;
+}
+
+.between{
+    display: flex;
+    justify-content: space-between;
+}
+
+.done{
+    text-decoration: line-through;
+}
+.doneOther{
+    text-decoration: line-through;
+}
+
+.doneAnother{
+    text-decoration: line-through;
+}
+.completed{
+    display: none;
+}
+.active{
+    display: none;
+}
+
+.prop{
+    display: initial;
+}
+
+.lineUp{
+    margin: -5px -10px 15px -25px;
+    border-bottom: 1px solid lightgray;
+    cursor: pointer;
+    color: #757575;
+    font-size: 18px;
+}
