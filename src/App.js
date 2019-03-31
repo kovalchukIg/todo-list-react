@@ -10,20 +10,26 @@ class App extends React.Component {
     this.state = {
       items: JSON.parse(localStorage.getItem("items")) || [],
       text: "",
-      filter: localStorage.getItem("filterItems") || "all"
+      filter: localStorage.getItem("filterItems") || "all",
+      startDate: new Date()
     };
     this.inputRef = React.createRef();
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.onHandlerChange = this.onHandlerChange.bind(this);
+    this.onHandleChange = this.onHandleChange.bind(this);
     this.getFilterState = this.getFilterState.bind(this);
   }
-
     componentDidMount(){
         this.inputRef.current.focus();
     }
 
+    handleChange(date) {
+        this.setState({
+            startDate: date
+        });
+    }
 
-    onHandlerChange(e){
+    onHandleChange(e){
     this.setState({
         text: e.target.value.trim()
     })
@@ -35,11 +41,17 @@ class App extends React.Component {
       if(!this.state.text.length) {
         return;
       }
+      const newDate = this.state.startDate;
+
       const newItem = {
         text: this.state.text,
         id: Date.now(),
+        currentDate: newDate.toDateString(),
         completed: false
       };
+
+      console.log(this.state.startDate);
+      console.log(newItem.currentDate);
       this.setState(state => ({
         items: state.items.concat(newItem),
         text: "",
@@ -50,7 +62,7 @@ class App extends React.Component {
 
     deleteItem(index){
       const removeItem = [...this.state.items];
-      removeItem.splice(index.id, 1);
+      removeItem.splice(index, 1);
       this.setState({
           items: removeItem
       }, () => localStorage.setItem("items", JSON.stringify([...this.state.items])));
@@ -89,27 +101,29 @@ class App extends React.Component {
       <div className={style.borderRadius}>
       <Header
           handleSubmit={this.handleSubmit}
-          onHandlerChange={this.onHandlerChange}
+          onHandleChange={this.onHandleChange}
           text={this.state.text}
           inputRef={this.inputRef}
+          select={this.state.startDate}
+          change={this.handleChange}
       />
           <ul>
-          {this.state.items.map((item) => (
+          {this.state.items.map((item, index) => (
               <TodoList
                   key={item.id}
                   stateCompleted={item.completed}
-                  deleteItem={this.deleteItem.bind(this, item.id)}
+                  deleteItem={this.deleteItem.bind(this, index)}
                   id={item.id}
                   text={item.text}
                   handlerCompleted={this.handlerCompleted.bind(this, item.id)}
                   stateFilter={this.state.filter}
+                  date={item.currentDate}
               />
               ))}
               </ul>
         <Filters
             getFilterState={this.getFilterState}
         />
-
       </div>
     );
   }

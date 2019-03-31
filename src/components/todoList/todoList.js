@@ -16,6 +16,7 @@ function todoList (props) {
                 <li key={props.id} className={classes}>
                         <div onClick={props.handlerCompleted}>{props.text}</div>
                         <div className={s.prop}>
+                            until: {props.date}
                             <button onClick={props.deleteItem} className={s.button}>Delete</button>
                         </div>
                 </li>
@@ -24,6 +25,7 @@ function todoList (props) {
 }
 
 todoList.propTypes = {
+    date: PropTypes.string,
     stateCompleted: PropTypes.bool,
     deleteItem: PropTypes.func,
     handlerCheckbox: PropTypes.func,

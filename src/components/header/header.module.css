@@ -22,7 +22,7 @@
     border: 1px solid lightgray;
     outline: none;
     width: 85%;
-    margin: 10px 10px;
+    margin: 10px -11px 10px 10px;
 }
 
 .button {
@@ -32,7 +32,7 @@
     color: #757575;
     position: relative;
     height: 37px;
-    margin: 10px 10px 0 0;
+    margin: 10px 0 0 0;
     min-width: 64px;
     padding: 0 16px;
     display: inline-block;
